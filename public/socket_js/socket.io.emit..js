@@ -1,4 +1,3 @@
-$(document).ready(function () {
   // register
   $('#registerData').click(function(){
         socket.emit("client-send-user",{username:$('input#userR').val(),password:$('input#passR').val()})
@@ -26,5 +25,12 @@ $(document).ready(function () {
         socket.emit("client-send-mess",$('input#messText').val())
     })
 
+// typing text
+    $('input#messText').focusin(function(){
+        socket.emit("client-typing")
+    })
 
-});
+    $('input#messText').focusout(function(){
+        socket.emit("client-not-typing")
+    })
+

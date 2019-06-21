@@ -1,7 +1,7 @@
 var mangUser = require('./../models/data.json')
 module.exports = {
 
-    
+// thuc hien dang ky gui tu client
  register: function (io) {
 
         io.on('connection', function (socket) {
@@ -25,7 +25,7 @@ module.exports = {
         })
     },
 
-
+// thuc hien dang nhap gui tu client
 
 login: function (io) {
 
@@ -55,7 +55,7 @@ login: function (io) {
 
     },
 
-
+//thuc hien logout gui tu client toi tat ca cac tai khoan khac
 
  logout: function (io) {
 
@@ -69,7 +69,7 @@ login: function (io) {
     },
 
 
-
+// thuc hien gui tin toi tat ca client
 sendMess: function (io) {
 
         io.on('connection', function (socket) {
@@ -82,5 +82,28 @@ sendMess: function (io) {
         })
 
     },
+
+
+// trang thai  go tin 
+typeText:function (io) {
+
+    io.on('connection', function (socket) {
+        
+       
+        socket.on('client-typing', function () {
+            var note = socket.user + " is typing text"
+            socket.broadcast.emit('typing',note)
+            
+        })
+
+        socket.on('client-not-typing', function () {
+
+            socket.broadcast.emit('not-typing')
+        })
+
+
+    })
+
+}
 
 }
