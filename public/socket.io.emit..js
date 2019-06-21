@@ -22,8 +22,12 @@ $(document).ready(function () {
         $('.loginform').hide()
         $('.form-mess').hide()
     })
-    
+
     $('#send-mess').click(function(){
         socket.emit("client-send-mess",$('input#messText').val())
     })
+    $('#loginData').click(function(){
+        socket.emit("client-send-login",$('input#userL').val())
+    })
+
 });
