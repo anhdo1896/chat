@@ -1,20 +1,17 @@
 $(document).ready(function () {
-  
-    $('.registerform').hide()
-    $('.form-mess').hide()
-    $('#register').click(function(){
-        $('.registerform').show()
-        $('.loginform').hide()
+  // register
+  $('#registerData').click(function(){
+        socket.emit("client-send-user",{username:$('input#userR').val(),password:$('input#passR').val()})
+    })
+    
+    
+//login
+    $('#loginData').click(function(){
+        socket.emit("client-send-login",{username:$('input#userL').val(),password:$('input#passL').val()})
     })
 
-    $('#login').click(function(){
-        $('.registerform').hide()
-        $('.loginform').show()
-    })
 
-    $('#registerData').click(function(){
-        socket.emit("client-send-user",$('input#userR').val())
-    })
+//logout  
 
     $('#logout').click(function(){
         socket.emit("client-logout")
@@ -23,11 +20,11 @@ $(document).ready(function () {
         $('.form-mess').hide()
     })
 
+// send mess
+
     $('#send-mess').click(function(){
         socket.emit("client-send-mess",$('input#messText').val())
     })
-    $('#loginData').click(function(){
-        socket.emit("client-send-login",$('input#userL').val())
-    })
+
 
 });
